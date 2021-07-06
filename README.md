@@ -1,5 +1,5 @@
 # Rewordbook
-book of reviewing searched word:scrape dictionary search history using chrome history and export to CSV file
+create book of reviewing searched word:scrape dictionary search history using chrome history and export to CSV file
 
 【概要】 
 chrome履歴から日本語辞書の検索記録をスクレイピング
@@ -16,11 +16,17 @@ chrome履歴から日本語辞書の検索記録をスクレイピング
 
 ■ テキスト項目
 言語：python
-単語帳：Google Doc?
+出力ファイルフォーマット：CSV
+操作：一旦はCLI
+
+---
+【今後の拡張】
+1. wep service
+2. GUI
 ---
 【TODO】
 1. 開発環境構築
  1) git
  2) IDE:VS Code
- 3) 出力ファイルフォーマット：CSV
+ 3) 
 ---
