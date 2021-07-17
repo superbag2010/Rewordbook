@@ -1,2 +1,3 @@
-aaaa1
-bbbb1
+a = 1
+
+print(a)
