@@ -15,7 +15,7 @@ for rec in historyOrigin:
     if len(searchedWord) > 1:
         recTmp[0] = searchedWord[1]
     else:
-        recTmp[0] = searchedWord[0]
+        continue
     
     recTmp[1] = 'X'
 
