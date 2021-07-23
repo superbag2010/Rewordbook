@@ -35,7 +35,7 @@ for rec in historyOrigin:
     recTmp[4] = rec[3]
     history.append(recTmp)
 
-## output
+# output
 with open(constants.OUTPUT_URL, 'w', newline='', encoding='UTF-8') as f:
     write = csv.writer(f)
     write.writerow(constants.FIELDS)
