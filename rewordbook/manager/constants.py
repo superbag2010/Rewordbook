@@ -11,6 +11,7 @@ HISTORY_FILE_CHROME='history'
 # url of output
 #OUTPUT_URL=os.path.expanduser('~')+r"\Desktop\rewordbook.csv"
 OUTPUT_URL=r"D:\Googleドライブ\日本語\rewordbook.csv"
+OUTPUT_BACKUP_URL=r"D:\Googleドライブ\日本語\rewordbook" + str(date.today()) + ".csv"
 
 # output format
 FIELDS=['word', 'memorized', 'url', 'date', 'count']
@@ -22,3 +23,4 @@ GET_HISTORY_SQL_CHROME="SELECT DISTINCT urls.title, urls.url, urls.last_visit_ti
 EPOCH_START_HOUR_CHROME=1601
 EPOCH_START_MINUTE_CHROME=1
 EPOCH_START_SECOND_CHROME=1
+NOT_MEMORIZED_SYMBOL='X'

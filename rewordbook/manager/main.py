@@ -14,6 +14,10 @@ historyOrigin = fetcher.getSearchHitory(constants.CHROME)
 
 # if already output file exist
 if os.path.isfile(constants.OUTPUT_URL):
+
+    # bakcup origin file
+    os.rename(constants.OUTPUT_URL, constants.OUTPUT_BACKUP_URL);
+
     # add to output file
     with open(constants.OUTPUT_URL, 'a+', newline='', encoding='UTF-8') as f:
         writer = csv.writer(f)
