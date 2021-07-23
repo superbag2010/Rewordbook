@@ -10,7 +10,7 @@ HISTORY_FILE_CHROME='history'
 
 # url of output
 #OUTPUT_URL=os.path.expanduser('~')+r"\Desktop\rewordbook.csv"
-OUTPUT_URL=r"D:\Googleドライブ\日本語\rewordbook " + str(date.today()) + ".csv"
+OUTPUT_URL=r"D:\Googleドライブ\日本語\rewordbook.csv"
 
 # output format
 FIELDS=['word', 'memorized', 'url', 'date', 'count']

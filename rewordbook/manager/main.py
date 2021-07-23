@@ -4,9 +4,13 @@ import csv
 import re
 import datetime
 
+# featured history data
+history=[]
+
+# get history data
 fetcher = fetch.Fetcher()
 historyOrigin = fetcher.getSearchHitory(constants.CHROME)
-history=[]
+
 for rec in historyOrigin:
     recTmp = [None]*5
 
