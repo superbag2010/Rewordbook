@@ -17,3 +17,5 @@ https://drive.google.com/drive/folders/1GgTkHDIJzjyVhHrT_bgQikksEt7q1gCQ?usp=sha
 TODO
 １．削除モード
 ２．バッチ
+３．FROM PLUGIN？SQLITE？
+４．リンク遷移 with One click:GOOGLESPREADSHEET？
