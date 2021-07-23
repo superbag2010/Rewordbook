@@ -11,4 +11,9 @@ https://drive.google.com/drive/folders/1GgTkHDIJzjyVhHrT_bgQikksEt7q1gCQ?usp=sha
 
 ※ 注意事項
 ・実行の時、ブラウザを終了しないとDBロックエラー発生。
-※Chromeブラウザを終了しないとSQLiteで管理される履歴がロックされてる為、履歴を取得できない。
+⇒Chromeブラウザを終了しないとSQLiteで管理される履歴がロックされてる為、履歴を取得できない。
+
+
+TODO
+１．削除モード
+２．バッチ
