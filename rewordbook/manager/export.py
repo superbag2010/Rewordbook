@@ -5,6 +5,7 @@ import constants
 import datetime
 from shutil import copyfile
 
+
 def toCSV(rawSearchHistory):
 
     processedSearchHistory = []
@@ -17,56 +18,18 @@ def toCSV(rawSearchHistory):
         # bakcup origin file
         copyfile(outputUrl, outputBackbupUrl)
 
-        # not memorized word
-        memorizedRecs = []
-        notMemorizedRecs = []
-        allWordInBook = []
+        # make word to add to book
         with open(outputUrl, 'r', newline='', encoding='UTF-8') as f:
-            reader = csv.reader(f)
-            for rec in reader:
-                allWordInBook.append(rec[1])
-                if rec[0] == constants.NOT_MEMORIZED_SYMBOL:
-                    notMemorizedRecs.append(rec)
-                elif rec[0] == constants.MEMORIZED_SYMBOL_TMP:
-                    rec[0] = constants.MEMORIZED_SYMBOL
-                    memorizedRecs.append(rec)
+            newRecs = mkAddedRecsFromList(csv.reader(f), rawSearchHistory)
+        with open(outputUrl, 'r', newline='', encoding='UTF-8') as f:
+            memorizedRecs, notMemorizedRecs = mkMemorizedRecsFromList(csv.reader(f))
 
         # add to output file
         with open(outputUrl, 'w', newline='', encoding='UTF-8') as f:
             writer = csv.writer(f)
             writer.writerow(constants.FIELDS)
             
-            for recToCheck in rawSearchHistory:
-                # create searched word field
-                searchedWord = recToCheck[0].split("'")
-                if len(searchedWord) > 1:
-                    isNewWord = True
-                    for existedRec in allWordInBook:
-                        # if word is new, need to add
-                        if searchedWord[1] == existedRec:
-                            isNewWord = False
-                            break
-                    if isNewWord is True:
-                        newRecord = [None]*5
-                        newRecord[0] = constants.NOT_MEMORIZED_SYMBOL
-
-                        newRecord[1] = searchedWord[1]                    
-
-                        # url field
-                        newRecord[2] = recToCheck[1]
-
-                        # date field : convert epoch timestamp to readable date
-                        epoch_start = datetime.datetime(constants.EPOCH_START_HOUR_CHROME, constants.EPOCH_START_MINUTE_CHROME, constants.EPOCH_START_SECOND_CHROME)
-                        delta = epoch_start + datetime.timedelta(microseconds=int(recToCheck[2]))
-                        newRecord[3] = delta
-
-                        # searched count field
-                        newRecord[4] = recToCheck[3]
-                        writer.writerow(newRecord)
-                # if searched word doesn't exist, skip
-                else:
-                    continue
-
+            writer.writerows(newRecs)
             writer.writerows(notMemorizedRecs)
             writer.writerows(memorizedRecs)
 
@@ -100,3 +63,58 @@ def toCSV(rawSearchHistory):
             writer = csv.writer(f)
             writer.writerow(constants.FIELDS)
             writer.writerows(processedSearchHistory)
+
+
+def toGspread(rawSearchHistory):
+    a=1
+
+
+def mkAddedRecsFromList(reader, rawSearchHistory):
+    newRecs = []
+    for recToCheck in rawSearchHistory:
+        # create searched word field
+        searchedWord = recToCheck[0].split("'")
+        if len(searchedWord) > 1:
+            isNewWord = True
+            for existedRec in reader:
+                # if word is new, need to add
+                if searchedWord[1] == existedRec[1]:
+                    isNewWord = False
+                    break
+                
+            if isNewWord == True:
+                newRecord = [None]*5
+                newRecord[0] = constants.NOT_MEMORIZED_SYMBOL
+
+                newRecord[1] = searchedWord[1]                    
+
+                # url field
+                newRecord[2] = recToCheck[1]
+
+                # date field : convert epoch timestamp to readable date
+                epoch_start = datetime.datetime(constants.EPOCH_START_HOUR_CHROME, constants.EPOCH_START_MINUTE_CHROME, constants.EPOCH_START_SECOND_CHROME)
+                delta = epoch_start + datetime.timedelta(microseconds=int(recToCheck[2]))
+                newRecord[3] = delta
+
+                # searched count field
+                newRecord[4] = recToCheck[3]
+                newRecs.append(newRecord)
+        # if searched word doesn't exist, skip
+        else:
+            continue
+
+    return newRecs
+
+
+def mkMemorizedRecsFromList(reader):
+    memorizedRecs = []
+    notMemorizedRecs = []
+
+    for rec in reader:
+        if rec[0] == constants.NOT_MEMORIZED_SYMBOL:
+            notMemorizedRecs.append(rec)
+        elif rec[0] == constants.MEMORIZED_SYMBOL_TMP:
+            rec[0] = constants.MEMORIZED_SYMBOL
+            memorizedRecs.append(rec)
+
+    return memorizedRecs, notMemorizedRecs
