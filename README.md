@@ -14,6 +14,14 @@ https://drive.google.com/drive/folders/1GgTkHDIJzjyVhHrT_bgQikksEt7q1gCQ?usp=sha
 ⇒Chromeブラウザを終了しないとSQLiteで管理される履歴がロックされてる為、履歴を取得できない。
 
 
+※ 使い方
+1. 環境に合わせて変数設定(constants.py)
+2. 必要プログラム
+ - python3
+ - windows
+ - chrome
+3. chromeを閉じてpython3でmain.py実行
+
 TODO
 １．削除モード
 ２．バッチ
