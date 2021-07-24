@@ -19,7 +19,7 @@ OUTPUT_BACKUP_URL=OUTPUT_URL + str(date.today())
 FIELDS=['memorized', 'word', 'url', 'date', 'count']
 
 # sql
-GET_HISTORY_SQL_CHROME="SELECT DISTINCT urls.title, urls.url, urls.last_visit_time, urls.visit_count FROM urls, visits WHERE urls.id = visits.url and urls.url LIKE ('%ja.dict.naver.com%');"
+GET_HISTORY_SQL_CHROME="SELECT DISTINCT urls.title, urls.url, urls.last_visit_time, urls.visit_count FROM urls, visits WHERE urls.id = visits.url and urls.url LIKE ('%ja.dict.naver.com%') ORDER BY urls.last_visit_time DESC;"
 
 # output format
 OUTPUT_FORMAT_CSV='csv'
