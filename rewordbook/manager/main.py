@@ -6,4 +6,4 @@ import export
 rawSearchHistory = fetch.getSearchHitoryFromLocal(constants.CHROME)
 
 # output to csv file
-history = export.toCSV(rawSearchHistory)
+export.toCSV(rawSearchHistory)

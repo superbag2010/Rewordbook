@@ -100,5 +100,3 @@ def toCSV(rawSearchHistory):
             writer = csv.writer(f)
             writer.writerow(constants.FIELDS)
             writer.writerows(processedSearchHistory)
-    
-    return processedSearchHistory
