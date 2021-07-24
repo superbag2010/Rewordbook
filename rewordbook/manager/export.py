@@ -12,7 +12,7 @@ def toCSV(rawSearchHistory):
     outputBackbupUrl = constants.OUTPUT_BACKUP_URL + "." + constants.OUTPUT_FORMAT_CSV
 
     # if already output file exist
-    if os.path.isfile(outputUrl):
+    if os.path.exists(outputUrl):
 
         # bakcup origin file
         copyfile(outputUrl, outputBackbupUrl)
