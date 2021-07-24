@@ -1,6 +1,9 @@
 import os
 from datetime import date
 
+### excuting in new window environment, need to set following constans
+OUTPUT_URL=r"D:\Googleドライブ\日本語\rewordbook"
+
 # browser
 CHROME="chrome"
 
@@ -10,8 +13,7 @@ HISTORY_FILE_CHROME='history'
 
 # url of output
 #OUTPUT_URL=os.path.expanduser('~')+r"\Desktop\rewordbook.csv"
-OUTPUT_URL=r"D:\Googleドライブ\日本語\rewordbook.csv"
-OUTPUT_BACKUP_URL=r"D:\Googleドライブ\日本語\rewordbook" + str(date.today()) + ".csv"
+OUTPUT_BACKUP_URL=OUTPUT_URL + str(date.today())
 
 # output format
 FIELDS=['memorized', 'word', 'url', 'date', 'count']
@@ -19,10 +21,15 @@ FIELDS=['memorized', 'word', 'url', 'date', 'count']
 # sql
 GET_HISTORY_SQL_CHROME="SELECT DISTINCT urls.title, urls.url, urls.last_visit_time, urls.visit_count FROM urls, visits WHERE urls.id = visits.url and urls.url LIKE ('%ja.dict.naver.com%');"
 
+# output format
+OUTPUT_FORMAT_CSV='csv'
+
 # etc
 EPOCH_START_HOUR_CHROME=1601
 EPOCH_START_MINUTE_CHROME=1
 EPOCH_START_SECOND_CHROME=1
 NOT_MEMORIZED_SYMBOL='X'
+
+# symbol
 MEMORIZED_SYMBOL='O'
 MEMORIZED_SYMBOL_TMP=''
