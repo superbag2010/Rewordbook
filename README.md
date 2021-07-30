@@ -17,7 +17,7 @@ https://drive.google.com/drive/folders/1GgTkHDIJzjyVhHrT_bgQikksEt7q1gCQ?usp=sha
 ※ 使い方
 1. 環境に合わせて変数設定(constants.py)
 2. 必要プログラム
- - python3
+ - python3, plyvel(https://github.com/happynear/py-leveldb-windows)
  - windows
  - chrome
 3. chromeを閉じてpython3でmain.py実行
