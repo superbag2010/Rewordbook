@@ -10,6 +10,7 @@ CHROME="chrome"
 # url of browser history
 HISTORY_PATH_CHROME=os.path.expanduser('~')+r"\AppData\Local\Google\Chrome\User Data\Default"
 HISTORY_FILE_CHROME='history'
+HISTORY_PATH_CHROME_OTHER_DEVICES=os.path.expanduser('~')+r"\AppData\Local\Google\Chrome\User Data\Default\Sync Data\LevelDB"
 
 # url of output
 #OUTPUT_URL=os.path.expanduser('~')+r"\Desktop\rewordbook.csv"
