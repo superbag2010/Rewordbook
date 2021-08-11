@@ -14,16 +14,16 @@ https://drive.google.com/drive/folders/1GgTkHDIJzjyVhHrT_bgQikksEt7q1gCQ?usp=sha
 ⇒Chromeブラウザを終了しないとSQLiteで管理される履歴がロックされてる為、履歴を取得できない。
 
 
-※ 使い方
-1. 環境に合わせて変数設定(constants.py)
-2. 必要プログラム
- - python3, plyvel(https://github.com/happynear/py-leveldb-windows)
- - windows
- - chrome
-3. chromeを閉じてpython3でmain.py実行
+※ 使い方(google accountのエクスポート利用)
+1. 環境に合わせて変数設定(constants.py)：OUTPUT_URL、GOOGLE_ACCOUNT_HISTORY_PATH
+2. google accountのエクスポート利用して「BrowserHistory.json」出力、配置
+3. chromeを閉じてpython3でgetFromBrowserHistory.py実行
 
-TODO
-１．削除モード
-２．バッチ
-３．FROM PLUGIN？SQLITE？
-４．リンク遷移 with One click:GOOGLESPREADSHEET？
+※ シンボル
+1. 覚えてない：'x'
+2. 一回覚えたと思う：'1'
+3. 覚えた：'o'
+4. 間違った検索語：'-'
+
+※ 重複チェック
+・各グループ中で行う

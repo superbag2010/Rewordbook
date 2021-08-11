@@ -107,14 +107,84 @@ def mkAddedRecsFromList(reader, rawSearchHistory):
 
 
 def mkMemorizedRecsFromList(reader):
-    memorizedRecs = []
     notMemorizedRecs = []
+    deletedRecs = []
+    memorizedRecs = []
+    onceMemorizedRecs = []
 
     for rec in reader:
+        # duplication check
+        isExist = False
         if rec[0] == constants.NOT_MEMORIZED_SYMBOL:
-            notMemorizedRecs.append(rec)
-        elif rec[0] == constants.MEMORIZED_SYMBOL_TMP:
-            rec[0] = constants.MEMORIZED_SYMBOL
-            memorizedRecs.append(rec)
+            for addedRec in notMemorizedRecs:
+                if addedRec[1] == rec[1]:
+                    isExist = True
+                    break
+            if isExist == False:
+                notMemorizedRecs.append(rec)
+        elif rec[0] == constants.DELETED_SYMBOL:
+            for addedRec in deletedRecs:
+                if addedRec[1] == rec[1]:
+                    isExist = True
+                    break
+            if isExist == False:
+                deletedRecs.append(rec)
+        elif rec[0] == constants.MEMORIZED_SYMBOL:
+            for addedRec in memorizedRecs:
+                if addedRec[1] == rec[1]:
+                    isExist = True
+                    break
+            if isExist == False:
+                memorizedRecs.append(rec)
+        elif rec[0] == constants.ONCE_MEMORIZED_SYMBOL:
+            for addedRec in onceMemorizedRecs:
+                if addedRec[1] == rec[1]:
+                    isExist = True
+                    break
+            if isExist == False:
+                onceMemorizedRecs.append(rec)
 
-    return memorizedRecs, notMemorizedRecs
+    return notMemorizedRecs, deletedRecs, memorizedRecs, onceMemorizedRecs
+
+def mkNewRecsFromDate(reader, rawSearchHistory):
+    newRecs = []
+    next(reader)
+    lastSearchedDate = next(reader)[3]
+
+    for recToCheck in rawSearchHistory:
+
+        newSearchedDate = datetime.datetime.fromtimestamp(recToCheck['time_usec'] / 1e6).strftime('%Y-%m-%d %H:%M')
+
+        if newSearchedDate > lastSearchedDate:
+            if constants.DIC_HOME_URL_NAVER in recToCheck['url']:
+                newRecord = [None]*4
+
+                newRecord[0] = constants.NOT_MEMORIZED_SYMBOL
+
+                # searched word field
+                newSearchedWord = recToCheck['title'].split("'")
+                if len(newSearchedWord) > 1:
+                    newRecord[1] = newSearchedWord[1]
+                else:
+                    continue
+
+                # url field
+                newRecord[2] = recToCheck['url']
+
+                # date field : convert epoch timestamp to readable date
+                newRecord[3] = newSearchedDate
+
+                # duplication check
+                isExist = False
+                for rec in newRecs:
+                    if rec[1] == newSearchedWord[1]:
+                        isExist = True
+                        break
+
+                if isExist == False:
+                    newRecs.append(newRecord)
+        # if old date, break
+        else:
+            break
+
+    return newRecs
