@@ -3,6 +3,7 @@ from datetime import date
 
 ### excuting in new window environment, need to set following constans
 OUTPUT_URL=r"D:\Googleドライブ\ja_dic\rewordbook"
+OUTPUT_URL_FOR_WINODW=r"C:\Users\JEANSUBIANO\Desktop\WebCrawler\Result"
 
 # browser
 CHROME="chrome"
