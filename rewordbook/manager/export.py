@@ -143,6 +143,13 @@ def mkMemorizedRecsFromList(reader):
                     break
             if isExist == False:
                 onceMemorizedRecs.append(rec)
+        else:
+            for addedRec in notMemorizedRecs:
+                if addedRec[1] == rec[1]:
+                    isExist = True
+                    break
+            if isExist == False:
+                notMemorizedRecs.append(rec)
 
     return notMemorizedRecs, deletedRecs, memorizedRecs, onceMemorizedRecs
 
