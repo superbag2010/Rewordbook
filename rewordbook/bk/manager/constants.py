@@ -2,7 +2,7 @@ import os
 from datetime import date
 
 ### excuting in new window environment, need to set following constans
-OUTPUT_URL=r"D:\Googleドライブ\ja_dic\rewordbook"
+OUTPUT_URL="/Users/choeseungho/Desktop/google_drive/ja_dic/rewordbook"
 OUTPUT_URL_FOR_WINODW=r"C:\Users\JEANSUBIANO\Desktop\WebCrawler\Result"
 
 # browser
@@ -11,7 +11,7 @@ CHROME="chrome"
 # url of browser history
 HISTORY_PATH_CHROME=os.path.expanduser('~')+r"\AppData\Local\Google\Chrome\User Data\Default"
 HISTORY_FILE_CHROME='history'
-GOOGLE_ACCOUNT_HISTORY_PATH=r"D:\Googleドライブ\ja_dic\raw\BrowserHistory.json"
+GOOGLE_ACCOUNT_HISTORY_PATH="/Users/choeseungho/Desktop/google_drive/ja_dic/raw/BrowserHistory.json"
 
 # url of output
 #OUTPUT_URL=os.path.expanduser('~')+r"\Desktop\rewordbook.csv"
